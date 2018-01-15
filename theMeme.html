@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!-- saved from url=(0018)http://ozca.party/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Sean Party!</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <style>
+		@keyframes condemned_blink_effect {
+				0% {
+						visibility: hidden;
+				}
+				50% {
+						visibility: hidden;
+				}
+				100% {
+						visibility: visible;
+				}
+		}
+    @keyframes fall {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(100vh);
+        }
+    }
+		.blink {
+				animation: 2s linear infinite condemned_blink_effect;
+		}
+    body {
+
+      color: yellow;
+    }
+		main {
+		    min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-flow: column;
+}
+    video {
+      min-height: 80vh;
+      max-width: 80vw;
+    }
+    .falling {
+      width: 128px;
+      height: 128px;
+      background: url(https://i.imgur.com/jw8dBMl.gif) center no-repeat;
+      background-size: contain;
+      position: absolute;
+      top: -128px;
+      animation: 3s ease-in infinite fall;
+    }
+    .falling1 {
+      background-image: url(https://i.imgur.com/jw8dBMl.gif);
+    }
+    .falling2 {
+      background-image: url(https://i.imgur.com/jw8dBMl.gif);
+    }
+    .falling3 {
+      background-image: url(https://i.imgur.com/jw8dBMl.gif);
+    }
+
+html {
+  background: url(https://i.imgur.com/jw8dBMl.gif) repeat center center fixed;
+  background-size: 40%;
+  overflow:hidden;
+}
+
+.color {
+	height:1105%;
+	width:100%;
+	margin-top: 0;
+	position: absolute;
+	opacity: 0.2;
+}
+  </style>
+<style></style></head>
+<body>
+<main>
+<audio autoplay preload="auto" src="" loop="false" autobuffer id="audio1"></audio>
+<audio autoplay preload="auto" src="" loop="false" autobuffer id="audio2"></audio>
+<div class="color" id="colour">
+<h1 class="blink">Sean Party!</h1>
+  <!-- <img src="https://i.imgur.com/jw8dBMl.gif" class="bg"> -->
+  <!-- <video id="video" autoplay="" muted="" loop="" src="dabtastic.mp4"> -->
+  </video>
+</main>
+
+<script>
+  function selectRandomSong(audioObjectToEdit) {
+	var songs=[
+		"https://dl.dropbox.com/s/is7idwfbbssci96/Bag%20Raiders%20-%20Shooting%20Stars.mp3?dl=0",
+		"https://dl.dropbox.com/s/brkipdfb9aq2cke/FRC%20-%20Rhapsody.mp3?dl=0",
+		"https://dl.dropbox.com/s/vsc247ouuadue5f/Gabe%20-%20the.mp3?dl=0",
+		"https://dl.dropbox.com/s/3dcjnqig5qawdaf/Gabe%20the%20dog%20-%20dont%20stop%20me%20now%20%28Queen%29.mp3?dl=0",
+		"https://dl.dropbox.com/s/6e29zgp7vqhyb87/NCSS%202018%20Tutors%20-%20Music%20Video%20%28Youre%20Welcome%29.mp3?dl=0"
+	];
+	var song = songs[Math.floor(Math.random()*songs.length)];
+	document.getElementById("audio" + audioObjectToEdit).src = song;
+  }
+  
+  selectRandomSong(1);
+  selectRandomSong(2);
+  document.querySelector("#audio1").addEventListener("ended", selectRandomSong(1), false);
+  document.querySelector("#audio2").addEventListener("ended", selectRandomSong(2), false);
+  function addbox(){
+    const x = document.createElement("img");
+	x.src = "https://i.imgur.com/jw8dBMl.gif";
+    x.className = "falling";
+    document.body.appendChild(x);
+    x.style.left = Math.random()*100 + "%";
+    x.style.animationDelay = Math.random()*6 + "s";
+  }
+  for (let i = 0; i < 100; i++) {
+    addbox();
+  }
+  window.setInterval(function(){
+	var colors = ['Aqua', 'Chartreuse', 'Orange,', 'Yellow', 'Violet', 'Tomato', 'BlueViolet']
+	var color = colors[Math.floor(Math.random()*colors.length)];
+	document.getElementById("colour").style.backgroundColor = color;
+  }, 500);
+</script><div class="falling" style="left: 43.9181%; animation-delay: 4.02755s;"></div><div class="falling" style="left: 26.4071%; animation-delay: 1.49307s;"></div><div class="falling" style="left: 29.7462%; animation-delay: 2.25573s;"></div><div class="falling" style="left: 76.0733%; animation-delay: 4.09399s;"></div><div class="falling" style="left: 47.9244%; animation-delay: 3.28969s;"></div><div class="falling" style="left: 81.5414%; animation-delay: 4.32947s;"></div><div class="falling" style="left: 84.7312%; animation-delay: 0.958763s;"></div><div class="falling" style="left: 56.8623%; animation-delay: 4.7217s;"></div><div class="falling" style="left: 99.3376%; animation-delay: 1.17272s;"></div><div class="falling" style="left: 12.8919%; animation-delay: 5.56748s;"></div><div class="falling" style="left: 27.3214%; animation-delay: 5.56216s;"></div><div class="falling" style="left: 70.9508%; animation-delay: 3.726s;"></div><div class="falling" style="left: 69.8141%; animation-delay: 2.83458s;"></div><div class="falling" style="left: 14.1613%; animation-delay: 1.55708s;"></div><div class="falling" style="left: 52.4927%; animation-delay: 3.32756s;"></div><div class="falling" style="left: 22.6503%; animation-delay: 0.263306s;"></div><div class="falling" style="left: 19.3977%; animation-delay: 3.08738s;"></div><div class="falling" style="left: 14.2779%; animation-delay: 4.33274s;"></div><div class="falling" style="left: 97.0705%; animation-delay: 0.392494s;"></div><div class="falling" style="left: 43.3458%; animation-delay: 4.23667s;"></div>
+</div>
+
+
+
+</body></html>
