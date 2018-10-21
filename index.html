@@ -26,7 +26,7 @@
                 }
 
                 100% {
-                    transform: translateY(100vh);
+                    transform: translateY(110vh);
                 }
             }
 
@@ -52,25 +52,24 @@
             }
 
             .falling {
-                width: 128px;
-                height: 128px;
+                width: 5vmin;
+                height: 5vmin;
                 background: url(https://i.imgur.com/jw8dBMl.gif) center no-repeat;
                 background-size: contain;
                 position: absolute;
                 top: -128px;
                 animation: 3s ease-in infinite fall;
-            }
 
-            .falling1 {
-                background-image: url(https://i.imgur.com/jw8dBMl.gif);
             }
-
-            .falling2 {
-                background-image: url(https://i.imgur.com/jw8dBMl.gif);
-            }
-
-            .falling3 {
-                background-image: url(https://i.imgur.com/jw8dBMl.gif);
+            
+            .bounce {
+                width: 20vmin;
+                height: 20vmin;
+                background: url(https://i.imgur.com/jw8dBMl.gif) center no-repeat;
+                background-size: contain;
+                position: absolute;
+                top: 0;
+                left: 0;
             }
 
             html {
@@ -112,16 +111,24 @@
                 text-align-last: center;
                 font-family: "Comic Sans MS", cursive, sans-serif;
             }
+            
+            #titleText {
+                font-size: 8vmin;
+                text-align: justify;
+                text-align-last: center;
+                font-family: "Comic Sans MS", cursive, sans-serif;
+            }
         </style>
     </head>
     <body>
         <main>
+            <p id="titleText">🎉🎉🎉SeanPartySeanPartySeanParty🎉🎉🎉<br>🎉🎉🎉SeanPartySeanPartySeanParty🎉🎉🎉<br>🎉🎉🎉SeanPartySeanPartySeanParty🎉🎉🎉</p>
             <audio autoplay preload="auto" src="" loop="false" autobuffer id="audio1"></audio>
             <audio autoplay preload="auto" src="" loop="false" autobuffer id="audio2"></audio>
             <div class="color" id="colour">
                 <h1 class="blink">Sean Party!</h1>
         </main>
-        <div class="falling" style="left: 43.9181%; animation-delay: 4.02755s;"></div>
+        <!--<div class="falling" style="left: 43.9181%; animation-delay: 4.02755s;"></div>
         <div class="falling" style="left: 26.4071%; animation-delay: 1.49307s;"></div>
         <div class="falling" style="left: 29.7462%; animation-delay: 2.25573s;"></div>
         <div class="falling" style="left: 76.0733%; animation-delay: 4.09399s;"></div>
@@ -140,11 +147,13 @@
         <div class="falling" style="left: 19.3977%; animation-delay: 3.08738s;"></div>
         <div class="falling" style="left: 14.2779%; animation-delay: 4.33274s;"></div>
         <div class="falling" style="left: 97.0705%; animation-delay: 0.392494s;"></div>
-        <div class="falling" style="left: 43.3458%; animation-delay: 4.23667s;"></div>
+        <div class="falling" style="left: 43.3458%; animation-delay: 4.23667s;"></div>-->
         <div id="playButton" onclick="play()">
             <p id="playText">🎉🎉🎉<br>Click here for leDab<br>🎉🎉🎉</p>
         </div>
         <script>
+            var gifs = [];
+            
             function selectRandomSong(audioObjectToEdit) {
                 var songs = ["https://dl.dropbox.com/s/is7idwfbbssci96/Bag%20Raiders%20-%20Shooting%20Stars.mp3?dl=0", "https://dl.dropbox.com/s/brkipdfb9aq2cke/FRC%20-%20Rhapsody.mp3?dl=0", "https://dl.dropbox.com/s/vsc247ouuadue5f/Gabe%20-%20the.mp3?dl=0", "https://dl.dropbox.com/s/3dcjnqig5qawdaf/Gabe%20the%20dog%20-%20dont%20stop%20me%20now%20%28Queen%29.mp3?dl=0", "https://dl.dropbox.com/s/6e29zgp7vqhyb87/NCSS%202018%20Tutors%20-%20Music%20Video%20%28Youre%20Welcome%29.mp3?dl=0"];
                 var song = songs[Math.floor(Math.random() * songs.length)];
@@ -158,30 +167,6 @@
                 document.body.appendChild(x);
                 x.style.left = Math.random() * 100 + "%";
                 x.style.animationDelay = Math.random() * 6 + "s";
-            }
-            
-            function sleep(milliseconds) {
-                var start = new Date().getTime();
-                for (var i = 0; i < 1e7; i++) {
-                    if ((new Date().getTime() - start) > milliseconds){
-                        break;
-                    }
-                }
-            }
-            
-            function play() {
-                document.getElementById("playButton").removeAttribute("onclick");
-                selectRandomSong(1);
-                selectRandomSong(2);
-                document.querySelector("#audio1").addEventListener("ended", selectRandomSong(1), false);
-                document.querySelector("#audio2").addEventListener("ended", selectRandomSong(2), false);
-                
-                document.getElementById("playButton").className = "fadeHidden";
-                
-//                for (let i = 0; i < 100; i++) {
-//                    sleep(100);
-//                    addbox();
-//                }
             }
             
             /**
@@ -222,13 +207,81 @@
                 return "#" + singleRgbToHex(rgb[0]) + singleRgbToHex(rgb[1]) + singleRgbToHex(rgb[2]);
             }
             
+            function randomizeMovement(gif) {
+                var randomX = 0
+                var randomY = 0
+                while (randomX==0 || randomY==0) {
+                    randomX = parseInt(getRandomArbitrary(-20, 20));
+                    randomY = parseInt(getRandomArbitrary(-20, 20));
+                }
+                gif.dataset.velocityX = randomX;
+                gif.dataset.velocityY = randomY;
+            
+            }
+            //<div class="falling" style="left: 19.3977%; animation-delay: 3.08738s;"></div>
+            function play() {
+                document.getElementById("playButton").removeAttribute("onclick");
+                selectRandomSong(1);
+                selectRandomSong(2);
+                document.querySelector("#audio1").addEventListener("ended", selectRandomSong(1), false);
+                document.querySelector("#audio2").addEventListener("ended", selectRandomSong(2), false);
+                
+                document.getElementById("playButton").className = "fadeHidden";
+                
+                for (let i=0; i< 125; i++) {
+                    fallGif = document.createElement('div');
+                    fallGif.className = "falling";
+                    fallGif.style.left = getRandomArbitrary(0, 98) + "%";
+                    fallGif.style.animationDelay = getRandomArbitrary(0, 8) + "s";
+                    document.body.appendChild(fallGif);
+                }
+                
+                for (let i=0; i< 6; i++) {
+                    gifs.push(document.createElement('div'));
+                    gifs[i].className = "bounce";
+                    //gifs[i].dataset.velocityX = parseInt(getRandomArbitrary(-10, 10));
+                    //gifs[i].dataset.velocityY = parseInt(getRandomArbitrary(-10, 10));
+                    randomizeMovement(gifs[i]);
+                    gifs[i].dataset.posX = 0;
+                    gifs[i].dataset.posY = 0;
+                    gifs[i].onclick = function(){randomizeMovement(gifs[i]);}
+//                    gifs[i].style.transform = "translate(0vw,-60vh)";
+                    gifs[i].id = "bounce" + i
+                    document.body.appendChild(gifs[i]);
+                }
+                
+                for (let i=0; i< 25; i++) {
+                    fallGif = document.createElement('div');
+                    fallGif.className = "falling";
+                    fallGif.style.left = getRandomArbitrary(-3, 98) + "%";
+                    fallGif.style.animationDelay = getRandomArbitrary(0, 8) + "s";
+                    document.body.appendChild(fallGif);
+                }
+            }
+            
             window.setInterval(function() {
                 var hueColor = getRandomArbitrary(0,359)
                 document.getElementById("colour").style.backgroundColor = hslToHex(hueColor, 1, 0.5);
                 document.getElementById("playButton").style.backgroundColor = hslToHex(hueColor, 1, 0.5);
                 document.getElementById("playText").style.color = hslToHex((hueColor+180)%360, 1, 0.5)
+                document.getElementById("titleText").style.color = hslToHex((hueColor+180)%360, 1, 0.5)
                 
             }, 500);
+            
+            window.setInterval(function() {
+                for (let i=0; i< gifs.length; i++) {
+                    var gif = gifs[i]
+                    if (parseFloat(gif.dataset.posX) < 0 || parseFloat(gif.dataset.posX) > 90) {
+                        gif.dataset.velocityX = -parseInt(gif.dataset.velocityX)
+                    }
+                    if (parseFloat(gif.dataset.posY) < 0 || parseFloat(gif.dataset.posY) > 90) {
+                        gif.dataset.velocityY = -parseInt(gif.dataset.velocityY)
+                    }
+                    gif.dataset.posX = parseFloat(gif.dataset.posX) + gif.dataset.velocityX/4
+                    gif.dataset.posY = parseFloat(gif.dataset.posY) + gif.dataset.velocityY/4
+                    gif.style.transform = "translate(" + gif.dataset.posX + "vw," + gif.dataset.posY + "vh)";
+                }
+            }, 65);
         </script>
     </body>
 </html>
