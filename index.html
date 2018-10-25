@@ -6,6 +6,59 @@
         <title>Sean Party!</title>
         <meta name="viewport" content="width=device-width, user-scalable=no">
         <style>
+        
+            @keyframes title_text_rotation {
+                0% {
+                    transform: rotate(0deg) scale(1);
+                }
+                
+                50% {
+                    transform: rotate(180deg) scale(0.5);
+                }
+                
+                100% {
+                    transform: rotate(359deg) scale(1);
+                }
+            }
+            
+            @keyframes text_emoji_rotation {
+                0% {
+                    transform: rotate(0deg);
+                }
+                
+                100% {
+                    transform: rotate(359deg);
+                }
+            }
+            
+            @keyframes text_emoji_block_rotation {
+                0% {
+                    transform: rotate(359deg) scale(1);
+                }
+                
+                50% {
+                    transform: rotate(0deg) scale(2);
+                }
+                
+                100% {
+                    transform: rotate(359deg) scale(1);
+                }
+            }
+            
+            /**
+            * Move in a circle without wrapper elements
+            * Idea by Aryeh Gregor, simplified by Lea Verou
+            */
+            @keyframes circle {
+                from {
+                    transform: rotate(0deg) translate(-15vmin) rotate(0deg);
+                }
+                to {
+                    transform: rotate(360deg) translate(-15vmin) rotate(-360deg);
+                }
+            }
+            
+            
             @keyframes condemned_blink_effect {
                 0% {
                     visibility: hidden;
@@ -102,7 +155,16 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                
+            }
+            
+            .emojiText {
+                animation: 0.5s linear infinite text_emoji_rotation;
+                display: inline-block;
+            }
+            
+            .emojiBlock {
+                animation: 4s linear infinite text_emoji_block_rotation;
+                display: inline-block;
             }
             
             #playText {
@@ -113,16 +175,26 @@
             }
             
             #titleText {
-                font-size: 8vmin;
+                font-size: 6vmin;
                 text-align: justify;
                 text-align-last: center;
                 font-family: "Comic Sans MS", cursive, sans-serif;
+                animation: 4s linear infinite title_text_rotation, circle 4s infinite linear;
             }
         </style>
     </head>
     <body>
         <main>
-            <p id="titleText">🎉🎉🎉SeanPartySeanPartySeanParty🎉🎉🎉<br>🎉🎉🎉SeanPartySeanPartySeanParty🎉🎉🎉<br>🎉🎉🎉SeanPartySeanPartySeanParty🎉🎉🎉</p>
+        <!--Yes, every emoji is its own div and it's disgusting. Yes, it use div's and not spans because idk I tried spans and they didn't work so now it's divs.-->
+            <div id="titleText">
+                <nobr>
+                <div class="emojiBlock"><div class="emojiText">🎉</div><div class="emojiText">🎉</div><div class="emojiText">🎉</div></div>SeanPartySeanPartySeanParty<div class="emojiBlock"><div class="emojiText">🎉</div><div class="emojiText">🎉</div><div class="emojiText">🎉</div></div>
+                </nobr><br><br><br>
+                
+                <div class="emojiBlock"><div class="emojiText">🎉</div><div class="emojiText">🎉</div><div class="emojiText">🎉</div></div>SeanPartySeanPartySeanParty<div class="emojiBlock"><div class="emojiText">🎉</div><div class="emojiText">🎉</div><div class="emojiText">🎉</div></div><br><br><br>
+                
+                <div class="emojiBlock"><div class="emojiText">🎉</div><div class="emojiText">🎉</div><div class="emojiText">🎉</div></div>SeanPartySeanPartySeanParty<div class="emojiBlock"><div class="emojiText">🎉</div><div class="emojiText">🎉</div><div class="emojiText">🎉</div></div>
+            </div>
             <audio autoplay preload="auto" src="" loop="false" autobuffer id="audio1"></audio>
             <audio autoplay preload="auto" src="" loop="false" autobuffer id="audio2"></audio>
             <div class="color" id="colour">
@@ -211,8 +283,8 @@
                 var randomX = 0
                 var randomY = 0
                 while (randomX==0 || randomY==0) {
-                    randomX = parseInt(getRandomArbitrary(-20, 20));
-                    randomY = parseInt(getRandomArbitrary(-20, 20));
+                    randomX = parseInt(getRandomArbitrary(-15, 15));
+                    randomY = parseInt(getRandomArbitrary(-15, 15));
                 }
                 gif.dataset.velocityX = randomX;
                 gif.dataset.velocityY = randomY;
@@ -228,15 +300,15 @@
                 
                 document.getElementById("playButton").className = "fadeHidden";
                 
-                for (let i=0; i< 125; i++) {
+                for (let i=0; i< 100; i++) {
                     fallGif = document.createElement('div');
                     fallGif.className = "falling";
                     fallGif.style.left = getRandomArbitrary(0, 98) + "%";
                     fallGif.style.animationDelay = getRandomArbitrary(0, 8) + "s";
-                    document.body.appendChild(fallGif);
+                    document.body.prepend(fallGif);
                 }
                 
-                for (let i=0; i< 6; i++) {
+                for (let i=0; i< 3; i++) {
                     gifs.push(document.createElement('div'));
                     gifs[i].className = "bounce";
                     //gifs[i].dataset.velocityX = parseInt(getRandomArbitrary(-10, 10));
@@ -247,15 +319,7 @@
                     gifs[i].onclick = function(){randomizeMovement(gifs[i]);}
 //                    gifs[i].style.transform = "translate(0vw,-60vh)";
                     gifs[i].id = "bounce" + i
-                    document.body.appendChild(gifs[i]);
-                }
-                
-                for (let i=0; i< 25; i++) {
-                    fallGif = document.createElement('div');
-                    fallGif.className = "falling";
-                    fallGif.style.left = getRandomArbitrary(-3, 98) + "%";
-                    fallGif.style.animationDelay = getRandomArbitrary(0, 8) + "s";
-                    document.body.appendChild(fallGif);
+                    document.body.prepend(gifs[i]);
                 }
             }
             
