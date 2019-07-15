@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<!-- saved from url=(0018)http://ozca.party/ -->
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Sean Party!</title>
+        <meta name="viewport" content="width=device-width, user-scalable=no">
+        <style>
+        
+            @keyframes title_text_rotation {
+                0% {
+                    transform: rotate(0deg) scale(1);
+                }
+                
+                50% {
+                    transform: rotate(180deg) scale(0.5);
+                }
+                
+                100% {
+                    transform: rotate(359deg) scale(1);
+                }
+            }
+            
+            @keyframes text_emoji_rotation {
+                0% {
+                    transform: rotate(0deg);
+                }
+                
+                100% {
+                    transform: rotate(359deg);
+                }
+            }
+            
+            @keyframes text_emoji_block_rotation {
+                0% {
+                    transform: rotate(359deg) scale(1);
+                }
+                
+                50% {
+                    transform: rotate(0deg) scale(2);
+                }
+                
+                100% {
+                    transform: rotate(359deg) scale(1);
+                }
+            }
+            
+            /**
+            * Move in a circle without wrapper elements
+            * Idea by Aryeh Gregor, simplified by Lea Verou
+            */
+            @keyframes circle {
+                from {
+                    transform: rotate(0deg) translate(-15vmin) rotate(0deg);
+                }
+                to {
+                    transform: rotate(360deg) translate(-15vmin) rotate(-360deg);
+                }
+            }
+            
+            
+            @keyframes condemned_blink_effect {
+                0% {
+                    visibility: hidden;
+                }
+
+                50% {
+                    visibility: hidden;
+                }
+
+                100% {
+                    visibility: visible;
+                }
+            }
+
+            @keyframes fall {
+                0% {
+                    transform: translateY(0);
+                }
+
+                100% {
+                    transform: translateY(110vh);
+                }
+            }
+
+            .blink {
+                animation: 2s linear infinite condemned_blink_effect;
+            }
+
+            body {
+                color: yellow;
+            }
+
+            main {
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-flow: column;
+            }
+
+            video {
+                min-height: 80vh;
+                max-width: 80vw;
+            }
+
+            .falling {
+                width: 10vmin;
+                height: 10vmin;
+                background: url(https://oldmooresalmanac.com/wp-content/uploads/2017/11/cow-2896329_960_720-Copy.jpg) center no-repeat;
+                background-size: contain;
+                position: absolute;
+                top: -128px;
+                animation: 3s ease-in infinite fall;
+
+            }
+            
+            .bounce {
+                width: 20vmin;
+                height: 20vmin;
+                background: url(https://media.mnn.com/assets/images/2017/01/cow-in-pasture.jpg.838x0_q80.jpg) center no-repeat;
+                background-size: contain;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+            html {
+                background: url(https://www.npr.org/assets/img/2014/02/27/CowPyschology.gif) repeat center center fixed;
+                background-size: 40%;
+                overflow: hidden;
+            }
+
+            .color {
+                height: 1105%;
+                width: 100%;
+                margin-top: 0;
+                position: absolute;
+                opacity: 0.2;
+            }
+            
+            .fadeHidden {
+                visibility: hidden;
+                opacity: 0;
+                transition: visibility 0s 5s, opacity 2s linear;
+            }
+            
+            #playButton {
+                background: rgb(0,0,0);
+                width: 100%;
+                height: 100%;
+                position: fixed;
+                top: 0;
+                left: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            .emojiText {
+                animation: 0.5s linear infinite text_emoji_rotation;
+                display: inline-block;
+            }
+            
+            .emojiBlock {
+                animation: 4s linear infinite text_emoji_block_rotation;
+                display: inline-block;
+            }
+            
+            #playText {
+                font-size: 20vmin;
+                text-align: justify;
+                text-align-last: center;
+                font-family: "Comic Sans MS", cursive, sans-serif;
+            }
+            
+            #titleText {
+                font-size: 6vmin;
+                text-align: justify;
+                text-align-last: center;
+                font-family: "Comic Sans MS", cursive, sans-serif;
+                animation: 4s linear infinite title_text_rotation, circle 4s infinite linear;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+        <!--Yes, every emoji is its own div and it's disgusting. Yes, it use div's and not spans because idk I tried spans and they didn't work so now it's divs.-->
+            <div id="titleText">
+                <nobr>
+                <div class="emojiBlock"><div class="emojiText">🎉</div><div class="emojiText">🎉</div><div class="emojiText">🎉</div></div>SeanPartySeanPartySeanParty<div class="emojiBlock"><div class="emojiText">🎉</div><div class="emojiText">🎉</div><div class="emojiText">🎉</div></div>
+                </nobr><br><br><br>
+                
+                <div class="emojiBlock"><div class="emojiText">🎉</div><div class="emojiText">🎉</div><div class="emojiText">🎉</div></div>SeanPartySeanPartySeanParty<div class="emojiBlock"><div class="emojiText">🎉</div><div class="emojiText">🎉</div><div class="emojiText">🎉</div></div><br><br><br>
+                
+                <div class="emojiBlock"><div class="emojiText">🎉</div><div class="emojiText">🎉</div><div class="emojiText">🎉</div></div>SeanPartySeanPartySeanParty<div class="emojiBlock"><div class="emojiText">🎉</div><div class="emojiText">🎉</div><div class="emojiText">🎉</div></div>
+            </div>
+            <audio autoplay preload="auto" src="" loop="false" autobuffer id="audio1"></audio>
+            <audio autoplay preload="auto" src="" loop="false" autobuffer id="audio2"></audio>
+            <div class="color" id="colour">
+                <h1 class="blink">Sean Party!</h1>
+        </main>
+        <!--<div class="falling" style="left: 43.9181%; animation-delay: 4.02755s;"></div>
+        <div class="falling" style="left: 26.4071%; animation-delay: 1.49307s;"></div>
+        <div class="falling" style="left: 29.7462%; animation-delay: 2.25573s;"></div>
+        <div class="falling" style="left: 76.0733%; animation-delay: 4.09399s;"></div>
+        <div class="falling" style="left: 47.9244%; animation-delay: 3.28969s;"></div>
+        <div class="falling" style="left: 81.5414%; animation-delay: 4.32947s;"></div>
+        <div class="falling" style="left: 84.7312%; animation-delay: 0.958763s;"></div>
+        <div class="falling" style="left: 56.8623%; animation-delay: 4.7217s;"></div>
+        <div class="falling" style="left: 99.3376%; animation-delay: 1.17272s;"></div>
+        <div class="falling" style="left: 12.8919%; animation-delay: 5.56748s;"></div>
+        <div class="falling" style="left: 27.3214%; animation-delay: 5.56216s;"></div>
+        <div class="falling" style="left: 70.9508%; animation-delay: 3.726s;"></div>
+        <div class="falling" style="left: 69.8141%; animation-delay: 2.83458s;"></div>
+        <div class="falling" style="left: 14.1613%; animation-delay: 1.55708s;"></div>
+        <div class="falling" style="left: 52.4927%; animation-delay: 3.32756s;"></div>
+        <div class="falling" style="left: 22.6503%; animation-delay: 0.263306s;"></div>
+        <div class="falling" style="left: 19.3977%; animation-delay: 3.08738s;"></div>
+        <div class="falling" style="left: 14.2779%; animation-delay: 4.33274s;"></div>
+        <div class="falling" style="left: 97.0705%; animation-delay: 0.392494s;"></div>
+        <div class="falling" style="left: 43.3458%; animation-delay: 4.23667s;"></div>-->
+        <div id="playButton" onclick="play()">
+            <p id="playText">🎉🎉🎉<br>Click here for leDab<br>🎉🎉🎉</p>
+        </div>
+        <script>
+            var gifs = [];
+            
+            function selectRandomSong(audioObjectToEdit) {
+                var songs = ["https://dl.dropbox.com/s/is7idwfbbssci96/Bag%20Raiders%20-%20Shooting%20Stars.mp3?dl=0", "https://dl.dropbox.com/s/brkipdfb9aq2cke/FRC%20-%20Rhapsody.mp3?dl=0", "https://dl.dropbox.com/s/vsc247ouuadue5f/Gabe%20-%20the.mp3?dl=0", "https://dl.dropbox.com/s/3dcjnqig5qawdaf/Gabe%20the%20dog%20-%20dont%20stop%20me%20now%20%28Queen%29.mp3?dl=0", "https://dl.dropbox.com/s/6e29zgp7vqhyb87/NCSS%202018%20Tutors%20-%20Music%20Video%20%28Youre%20Welcome%29.mp3?dl=0"];
+                var song = songs[Math.floor(Math.random() * songs.length)];
+                document.getElementById("audio" + audioObjectToEdit).src = song;
+            }
+
+            function addbox() {
+                const x = document.createElement("img");
+                x.src = "https://oldmooresalmanac.com/wp-content/uploads/2017/11/cow-2896329_960_720-Copy.jpg";
+                x.className = "falling";
+                document.body.appendChild(x);
+                x.style.left = Math.random() * 100 + "%";
+                x.style.animationDelay = Math.random() * 6 + "s";
+            }
+            
+            /**
+            * Returns a random number between min (inclusive) and max (exclusive)
+            * From https://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range
+            * I'm really starting to think I shouldn't be doing this in plain JS.
+            */
+            function getRandomArbitrary(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+            
+            function singleRgbToHex (rgb) {
+                var hex = Number(rgb).toString(16);
+                if (hex.length < 2) {
+                    hex = "0" + hex;
+                }
+                return hex;
+            }
+            
+            function hslToHex(h, s, l) {
+                //taken from https://gist.github.com/vahidk/05184faf3d92a0aa1b46aeaa93b07786
+                let c = (1 - Math.abs(2 * l - 1)) * s;
+                let hp = h / 60.0;
+                let x = c * (1 - Math.abs((hp % 2) - 1));
+                let rgb1;
+                if (isNaN(h)) rgb1 = [0, 0, 0];
+                else if (hp <= 1) rgb1 = [c, x, 0];
+                else if (hp <= 2) rgb1 = [x, c, 0];
+                else if (hp <= 3) rgb1 = [0, c, x];
+                else if (hp <= 4) rgb1 = [0, x, c];
+                else if (hp <= 5) rgb1 = [x, 0, c];
+                else if (hp <= 6) rgb1 = [c, 0, x];
+                let m = l - c * 0.5;
+                rgb = [
+                Math.round(255 * (rgb1[0] + m)),
+                Math.round(255 * (rgb1[1] + m)),
+                Math.round(255 * (rgb1[2] + m))];
+                return "#" + singleRgbToHex(rgb[0]) + singleRgbToHex(rgb[1]) + singleRgbToHex(rgb[2]);
+            }
+            
+            function randomizeMovement(gif) {
+                var randomX = 0
+                var randomY = 0
+                while (randomX==0 || randomY==0) {
+                    randomX = parseInt(getRandomArbitrary(-15, 15));
+                    randomY = parseInt(getRandomArbitrary(-15, 15));
+                }
+                gif.dataset.velocityX = randomX;
+                gif.dataset.velocityY = randomY;
+            
+            }
+            //<div class="falling" style="left: 19.3977%; animation-delay: 3.08738s;"></div>
+            function play() {
+                document.getElementById("playButton").removeAttribute("onclick");
+                selectRandomSong(1);
+                selectRandomSong(2);
+                document.querySelector("#audio1").addEventListener("ended", selectRandomSong(1), false);
+                document.querySelector("#audio2").addEventListener("ended", selectRandomSong(2), false);
+                
+                document.getElementById("playButton").className = "fadeHidden";
+                
+                for (let i=0; i< 100; i++) {
+                    fallGif = document.createElement('div');
+                    fallGif.className = "falling";
+                    fallGif.style.left = getRandomArbitrary(0, 98) + "%";
+                    fallGif.style.animationDelay = getRandomArbitrary(0, 8) + "s";
+                    document.body.prepend(fallGif);
+                }
+                
+                for (let i=0; i< 3; i++) {
+                    gifs.push(document.createElement('div'));
+                    gifs[i].className = "bounce";
+                    //gifs[i].dataset.velocityX = parseInt(getRandomArbitrary(-10, 10));
+                    //gifs[i].dataset.velocityY = parseInt(getRandomArbitrary(-10, 10));
+                    randomizeMovement(gifs[i]);
+                    gifs[i].dataset.posX = 0;
+                    gifs[i].dataset.posY = 0;
+                    gifs[i].onclick = function(){randomizeMovement(gifs[i]);}
+//                    gifs[i].style.transform = "translate(0vw,-60vh)";
+                    gifs[i].id = "bounce" + i
+                    document.body.prepend(gifs[i]);
+                }
+            }
+            
+            window.setInterval(function() {
+                var hueColor = getRandomArbitrary(0,359)
+                document.getElementById("colour").style.backgroundColor = hslToHex(hueColor, 1, 0.5);
+                document.getElementById("playButton").style.backgroundColor = hslToHex(hueColor, 1, 0.5);
+                document.getElementById("playText").style.color = hslToHex((hueColor+180)%360, 1, 0.5)
+                document.getElementById("titleText").style.color = hslToHex((hueColor+180)%360, 1, 0.5)
+                
+            }, 500);
+            
+            window.setInterval(function() {
+                for (let i=0; i< gifs.length; i++) {
+                    var gif = gifs[i]
+                    if (parseFloat(gif.dataset.posX) < 0 || parseFloat(gif.dataset.posX) > 90) {
+                        gif.dataset.velocityX = -parseInt(gif.dataset.velocityX)
+                    }
+                    if (parseFloat(gif.dataset.posY) < 0 || parseFloat(gif.dataset.posY) > 90) {
+                        gif.dataset.velocityY = -parseInt(gif.dataset.velocityY)
+                    }
+                    gif.dataset.posX = parseFloat(gif.dataset.posX) + gif.dataset.velocityX/4
+                    gif.dataset.posY = parseFloat(gif.dataset.posY) + gif.dataset.velocityY/4
+                    gif.style.transform = "translate(" + gif.dataset.posX + "vw," + gif.dataset.posY + "vh)";
+                }
+            }, 65);
+        </script>
+    </body>
+</html>
